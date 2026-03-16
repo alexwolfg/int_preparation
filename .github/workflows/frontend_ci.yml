@@ -10,6 +10,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+            - name: Setup Node JS
+              uses: actions/setup-node@v4
+              with:
+                node-version: latest
+                #cache: npm
+                #cache-dependency-path: starter/frontend/package-lock.json
             - name: Install dependencies
               run: |
                 cd starter/frontend
@@ -22,6 +28,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+            - name: Setup Node JS
+              uses: actions/setup-node@v4
+              with:
+                node-version: latest
+                #cache: npm
+                #cache-dependency-path: starter/frontend/package-lock.json
             - name: Run the lint job
               run: |
                 cd starter/frontend
