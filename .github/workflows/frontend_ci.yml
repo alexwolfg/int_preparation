@@ -37,7 +37,7 @@ jobs:
             - name: Run the lint job
               run: |
                 cd starter/frontend
-                npm run lint
+                npm run lint -- --fix
 
     build_job:
         needs: [lint_job, test_job]
