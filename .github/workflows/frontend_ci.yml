@@ -1,0 +1,40 @@
+name: Frontend Continuous Integration
+
+on:
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    test_job:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Install dependencies
+              run: |
+                cd starter/frontend
+                npm ci
+            - name: Run the tests
+              run: |
+                cd starter/frontend
+                npm tests
+    lint_job:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Run the lint job
+              run: |
+                cd starter/frontend
+                npm run lint
+
+    build_job:
+        needs: [lint_job, test_job]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Build image
+              run: |
+                docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag=mp-frontend:latest .
+                docker run --name mp-frontend -p 3000:3000 -d mp-frontend
+
+
