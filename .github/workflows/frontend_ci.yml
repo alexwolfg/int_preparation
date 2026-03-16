@@ -9,7 +9,7 @@ jobs:
     test_job:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Setup Node JS
               uses: actions/setup-node@v4
               with:
@@ -23,11 +23,11 @@ jobs:
             - name: Run the tests
               run: |
                 cd starter/frontend
-                npm tests
+                npm test
     lint_job:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Setup Node JS
               uses: actions/setup-node@v4
               with:
@@ -43,7 +43,7 @@ jobs:
         needs: [lint_job, test_job]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Build image
               run: |
                 docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag=mp-frontend:latest .

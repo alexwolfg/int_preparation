@@ -9,7 +9,7 @@ jobs:
     test_job:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Setup python
               uses: actions/setup-python@v6
               with:
@@ -17,12 +17,13 @@ jobs:
             - name: Install dependecies
               run: |
                 cd starter/backend
+                pip install pipenv
                 pipenv install
                 pipenv run test
     lint_job:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Setup python
               uses: actions/setup-python@v6
               with:
@@ -30,6 +31,7 @@ jobs:
             - name: Running the lint
               run: |
                 cd starter/backend
+                pip install pipenv
                 pipenv install
                 pipenv run lint
 
@@ -37,7 +39,7 @@ jobs:
         needs: [test_job, lint_job]
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: Setup python
               uses: actions/setup-python@v6
               with:
@@ -45,6 +47,7 @@ jobs:
             - name: Build and run
               run:
                 cd starter/backend
+                pip install pipenv
                 pipenv install
                 pipenv run serve
 
