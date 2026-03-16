@@ -35,7 +35,7 @@ jobs:
               run: |
                 cd starter/backend
                 pip install pipenv
-                pipenv install
+                pipenv install --dev
                 pipenv run lint
 
     build_job:

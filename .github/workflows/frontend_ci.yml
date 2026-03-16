@@ -32,8 +32,8 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: latest
-                #cache: npm
-                #cache-dependency-path: starter/frontend/package-lock.json
+                cache: npm
+                cache-dependency-path: starter/frontend/package-lock.json
             - name: Run the lint job
               run: |
                 cd starter/frontend
